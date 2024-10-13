@@ -1,7 +1,6 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
-
 const path = require("path");
 require("dotenv").config(
 	{
@@ -16,6 +15,7 @@ const io = new Server(server);
 // Middleware
 app.use(express.json());
 app.use(express.static("public"));
+ 
 
 // MongoDB connection
  const dbConnection = require("./database/dbConnection");

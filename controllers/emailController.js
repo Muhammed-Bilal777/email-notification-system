@@ -50,10 +50,13 @@ exports.sendEmail = async (req, res) => {
 };
 
 exports.getEmails = async (req, res) => {
-	try {
-		const emails = await Email.find().populate("from", "username email");
-		res.status(200).json(emails);
-	} catch (error) {
-		res.status(500).json({ error: "Error fetching emails" });
-	}
+  let id = req.body.userId;
+
+		try {
+			const emails = await Email.find({ from: id });
+
+			res.status(200).json(emails);
+		} catch (error) {
+			res.status(500).json({ error: "Error fetching emails" });
+		}
 };

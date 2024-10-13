@@ -63,6 +63,10 @@
             cursor: pointer;
             text-decoration: underline;
         }
+         .toggle-form:hover{
+            color: #fff;
+            text-decoration: none;
+        }
         #emailList {
             margin-top: 2rem;
         }
@@ -233,12 +237,18 @@
             emailList.innerHTML = '';
 
             try {
-                const response = await fetch('/api/emails');
+                const response = await fetch('/api/emails',{
+                    method:'POST',
+                    headers :{
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({userId}),
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch emails');
                 }
                 const emails = await response.json();
-                console.log(emails)
+                
                 if (emails.length === 0) {
                     emailList.innerHTML = '<p>No emails found.</p>';
                 } else {
