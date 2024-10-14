@@ -148,6 +148,8 @@
         function logout() {
             userId = null;
             toggleForms('loginForm');
+            
+              emailStatus.textContent=''
         }
 
         registerForm.addEventListener('submit', async (e) => {
@@ -199,6 +201,8 @@
                     userId = data.userId;
                     toggleForms('emailForm');
                     loginStatus.textContent = '';
+                     emailStatus.textContent=''
+
                 } else {
                     loginStatus.textContent = data.error;
                 }

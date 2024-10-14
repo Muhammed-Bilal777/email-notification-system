@@ -24,6 +24,7 @@ The Email Notification System is a full-stack web application that allows users 
 - Emails are sent using Nodemailer with Mailtrap for testing.
 - Email data is stored in MongoDB using the Email model.
 - Real-time status updates are provided using Socket.io.
+- Bull and Redis are used for mail queuing to ensure efficient and reliable email sending.
 
 ### 3. Real-time Email Status Updates
 - Users receive immediate feedback on the status of sent emails.
@@ -49,6 +50,10 @@ The Email Notification System is a full-stack web application that allows users 
 - HTML5 and CSS3 are used for structuring and styling.
 - JavaScript handles dynamic content updates and form submissions.
 
+### Mail Queuing
+- Bull and Redis are used to manage email sending in the background.
+- Emails are queued using Bull and Redis to ensure efficient and reliable  sending.
+- Emails are processed in the background, reducing the load on the server.
 ## Technical Stack
 
 - **Frontend**: HTML, CSS, JavaScript
@@ -73,7 +78,10 @@ The Email Notification System is a full-stack web application that allows users 
    - `MONGODB_URI`: Your MongoDB connection string
    - `MAILTRAP_USERNAME`: Your Mailtrap username
    - `MAILTRAP_PASSWORD`: Your Mailtrap password
-4. Run the server: `npm start`
+   - `REDIS_HOST`: Your Redis host
+   - `REDIS_PORT`: Your Redis port
+   - `REDIS_PASSWORD` : Your Redis password
+4. Run the server: `npm run dev`
 5. Access the application at `http://localhost:3000`
  
  

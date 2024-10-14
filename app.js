@@ -11,6 +11,8 @@ require("dotenv").config(
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+// Make io available globally
+global.io = io;
 
 // Middleware
 app.use(express.json());
@@ -47,6 +49,12 @@ io.on("connection", (socket) => {
 // Serve the static HTML page
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 const PORT = process.env.PORT || 3000;
